@@ -27,7 +27,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, RideRequestBut
     var sourceCoordinate : GMSPlace? = nil
     var destinationCoordinate : GMSPlace? = nil
     
-    private var cabType : CabType = .Ola
+    private var cabType : CabType = .Uber
     
     let ridesClient = RidesClient()
     let button = RideRequestButton()
@@ -47,14 +47,25 @@ class FirstViewController: UIViewController, UITextFieldDelegate, RideRequestBut
     }
     
     func setUberButton(){
-        let pickupLocation = CLLocation(latitude: 28.444297, longitude: 77.038529)//Source address//iffco chonk gurgaon
-        let dropoffLocation = CLLocation(latitude: 28.610940, longitude: 77.234482)//Destination address//India gate
+//        let pickupLocation = CLLocation(latitude: 28.444297, longitude: 77.038529)//Source address//iffco chonk gurgaon
+//        let dropoffLocation = CLLocation(latitude: 28.610940, longitude: 77.234482)//Destination address//India gate
+        let pickUplat = self.sourceCoordinate?.coordinate.latitude ?? 0.0
+        let pickUpLong = self.sourceCoordinate?.coordinate.longitude ?? 0.0
+        
+        let dropLat = self.destinationCoordinate?.coordinate.latitude ?? 0.0
+        let dropLong = self.destinationCoordinate?.coordinate.longitude ?? 0.0
+        
+        
+        let pickupLocation = CLLocation(latitude: pickUplat, longitude: pickUpLong)
+        let dropoffLocation = CLLocation(latitude: dropLat, longitude: dropLong)
+        
+        let dropLocationName = self.destinationCoordinate?.name
 
         //make sure that the pickupLocation is set in the deeplink
         let builder = RideParametersBuilder()
             .setPickupLocation(pickupLocation)
             .setDropoffLocation(dropoffLocation,
-                                nickname: "India gate")
+                                nickname: dropLocationName)
 
 
         // use the same pickupLocation to get the estimate
@@ -62,6 +73,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate, RideRequestBut
             product, response in
             if let productID = product?.productID { //check if the productID exists
                 builder.setProductID(productID)
+                
+                
+                
                 self.button.rideParameters = builder.build()
                 self.button.delegate = self
 
@@ -130,13 +144,49 @@ class FirstViewController: UIViewController, UITextFieldDelegate, RideRequestBut
     }
     
     
-    func setLabelTextOfOLA(cabCategoryModal : CabCategoryModal)
+    func setLabelTextForOLA(cabCategoryModal : CabCategoryModal?, rideEstimationModal : RideEstimationModal?)
     {
+        if let eta = cabCategoryModal?.eta
+        {
+            self.etaLabel.text = ("\(eta) ") + (cabCategoryModal?.timeUnit ?? "")
+        }
         
+        if let amountMax = rideEstimationModal?.amountMax
+        {
+            self.maximumFareLabel.text = ("\(amountMax) ") //+ (cabCategoryModal?.currency ?? "")
+        }
+        
+        if let amountMin = rideEstimationModal?.amountMin
+        {
+            self.minimumFareLabel.text = ("\(amountMin) ") //+ (cabCategoryModal?.currency ?? "")
+        }
+
     }
+    
+    func setLabelTectForUber(product : UberProduct)
+    {
+//        if let eta = cabCategoryModal?.eta
+//        {
+//            self.etaLabel.text = ("\(eta) ") + (cabCategoryModal?.timeUnit ?? "")
+  //      }
+        
+        if let amountMax = product.priceDetails?.minimumFee
+        {
+            self.maximumFareLabel.text = ("\(amountMax) ") //+ (cabCategoryModal?.currency ?? "")
+        }
+        
+//        if let amountMin = rideEstimationModal?.amountMin
+//        {
+//            self.minimumFareLabel.text = ("\(amountMin) ") //+ (cabCategoryModal?.currency ?? "")
+//        }
+    }
+    
     
     @IBAction func indexChanged(sender : UISegmentedControl)
     {
+        self.etaLabel.text = ""
+        self.minimumFareLabel.text = ""
+        self.maximumFareLabel.text = ""
         switch sender.selectedSegmentIndex {
         case 0:
             self.cabType = .Uber
@@ -175,21 +225,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, RideRequestBut
         
         ServiceHandler.sharedInstance.calculateFare(true, coordinateModal: coordinateModal) { (cabCategoryModal, rideEstimationModal) in
         
-            if let eta = cabCategoryModal?.eta
-            {
-                self.etaLabel.text = ("\(eta) ") + (cabCategoryModal?.timeUnit ?? "")
-            }
-            
-            if let amountMax = rideEstimationModal?.amountMax
-            {
-                self.maximumFareLabel.text = ("\(amountMax) ") //+ (cabCategoryModal?.currency ?? "")
-            }
-            
-            if let amountMin = rideEstimationModal?.amountMin
-            {
-                self.minimumFareLabel.text = ("\(amountMin) ") //+ (cabCategoryModal?.currency ?? "")
-            }
-            
+            self.setLabelTextForOLA(cabCategoryModal, rideEstimationModal: rideEstimationModal)
         }
 
     }
@@ -238,8 +274,13 @@ class FirstViewController: UIViewController, UITextFieldDelegate, RideRequestBut
         let button = RideRequestButton()
         let ridesClient = RidesClient()
         
-        let pickupLocation = CLLocation(latitude: sourceCoordinate!.coordinate.latitude, longitude: sourceCoordinate!.coordinate.longitude)
-        let dropoffLocation = CLLocation(latitude: destinationCoordinate!.coordinate.latitude, longitude: destinationCoordinate!.coordinate.longitude)
+        let pickupLat =  sourceCoordinate?.coordinate.latitude ?? 0
+        let pickupLang = sourceCoordinate!.coordinate.longitude ?? 0
+        let destinationLat = sourceCoordinate!.coordinate.longitude ?? 0
+        let destinationLang = destinationCoordinate!.coordinate.longitude ?? 0
+        
+        let pickupLocation = CLLocation(latitude: pickupLat, longitude: pickupLang)
+        let dropoffLocation = CLLocation(latitude: destinationLat, longitude: destinationLang)
         var builder = RideParametersBuilder().setPickupLocation(pickupLocation).setDropoffLocation(dropoffLocation)
         ridesClient.fetchCheapestProduct(pickupLocation: pickupLocation, completion: {
             product, response in
@@ -248,6 +289,42 @@ class FirstViewController: UIViewController, UITextFieldDelegate, RideRequestBut
                 button.rideParameters = builder.build()
                 button.loadRideInformation()
             }
+            
+        /*    if let data = response.data
+            {
+                do
+                {
+                    if let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String : AnyObject]
+                    {
+                        print("data ==== ",json)
+                        
+                        if (json["code"] as? String) == "INVALID_CITY"
+                        {
+                            UtilityClass.sharedInstance.showAlertViewWithMessage(json["message"] as? String)
+                            
+                            
+                        }
+                        else  if let jsonArray =  json["categories"] as? Array<[String : AnyObject]>
+                        {
+                            let cabCategoryModal = CabCategoryModal(jsonArray: jsonArray)
+                            let rideEstimationModal = RideEstimationModal(jsonArray: json["ride_estimate"] as? Array<[String : AnyObject]>)
+                        }
+                        else
+                        {
+                            UtilityClass.sharedInstance.showAlertViewWithMessage("Something is wrong")
+                        }
+                    }
+                    
+                }
+                catch let error as NSError
+                {
+                    UtilityClass.sharedInstance.showAlertViewWithMessage(error.localizedDescription)
+                }
+                
+                
+            }*/
+
+            
         })
     }
     
