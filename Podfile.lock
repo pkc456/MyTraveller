@@ -1,0 +1,18 @@
+PODS:
+  - GoogleMaps (1.10.2)
+  - ObjectMapper (1.3.0)
+  - UberRides (0.5.1):
+    - ObjectMapper (~> 1.0)
+
+DEPENDENCIES:
+  - GoogleMaps (= 1.10.2)
+  - UberRides
+
+SPEC CHECKSUMS:
+  GoogleMaps: 5c92e599b07b0a2a9b367c5dd128edc629bddfea
+  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
+  UberRides: 65641d60358a524842ffc64b92e664900172c6d7
+
+PODFILE CHECKSUM: b54925a89de792473536bdd173005877b988391a
+
+COCOAPODS: 1.0.1
