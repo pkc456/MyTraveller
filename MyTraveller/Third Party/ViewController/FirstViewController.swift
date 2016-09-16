@@ -10,13 +10,24 @@ import UIKit
 import UberRides
 import CoreLocation
 
+enum CabType : Int{
+    case Ola = 0
+    case Uber
+}
+
 class FirstViewController: UIViewController, UITextFieldDelegate, RideRequestButtonDelegate {
     
     @IBOutlet weak var textfieldSource: MVPlaceSearchTextField!
     @IBOutlet weak var textfieldDestination: MVPlaceSearchTextField!
     
-    var source : GMSPlace? = nil
-    var destination : GMSPlace? = nil
+    @IBOutlet var etaLabel: UILabel!
+    @IBOutlet var maximumFareLabel: UILabel!
+    @IBOutlet var minimumFareLabel: UILabel!
+    
+    var sourceCoordinate : GMSPlace? = nil
+    var destinationCoordinate : GMSPlace? = nil
+    
+    private var cabType : CabType = .Ola
     
     let ridesClient = RidesClient()
     let button = RideRequestButton()
@@ -25,7 +36,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, RideRequestBut
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.setUberButton()
+//        self.setUberButton()
         self.setSourceTextfield()
         self.setDestinationTextfield()
     }
@@ -119,17 +130,77 @@ class FirstViewController: UIViewController, UITextFieldDelegate, RideRequestBut
     }
     
     
+    func setLabelTextOfOLA(cabCategoryModal : CabCategoryModal)
+    {
+        
+    }
+    
+    @IBAction func indexChanged(sender : UISegmentedControl)
+    {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            self.cabType = .Uber
+            break
+        case 1:
+            self.cabType = .Ola
+            break
+        default:
+            break
+        }
+    }
+    
     @IBAction func btnCalculateAction(sender: UIButton) {
-        self.uber()
+//        self.uber()
+        
+        if cabType == .Ola
+        {
+            getOlaFareEstimate()
+        }
+        else if cabType == .Uber
+        {
+            self.uber()
+        }
+    }
+    
+    //MARK: - Web service
+    
+    func getOlaFareEstimate()
+    {
+        let coordinateModal = CoordinateModal()
+        coordinateModal.pickUPlong = Float(self.sourceCoordinate?.coordinate.longitude ?? 0.0)
+        coordinateModal.pickUplat = Float(self.destinationCoordinate?.coordinate.latitude ?? 0.0)
+        coordinateModal.dropLongitude = Float(self.destinationCoordinate?.coordinate.longitude ?? 0.0)
+        coordinateModal.dropLatitude = Float(self.destinationCoordinate?.coordinate.latitude ?? 0.0)
+        coordinateModal.category = "prime"
+        
+        ServiceHandler.sharedInstance.calculateFare(true, coordinateModal: coordinateModal) { (cabCategoryModal, rideEstimationModal) in
+        
+            if let eta = cabCategoryModal?.eta
+            {
+                self.etaLabel.text = ("\(eta) ") + (cabCategoryModal?.timeUnit ?? "")
+            }
+            
+            if let amountMax = rideEstimationModal?.amountMax
+            {
+                self.maximumFareLabel.text = ("\(amountMax) ") //+ (cabCategoryModal?.currency ?? "")
+            }
+            
+            if let amountMin = rideEstimationModal?.amountMin
+            {
+                self.minimumFareLabel.text = ("\(amountMin) ") //+ (cabCategoryModal?.currency ?? "")
+            }
+            
+        }
+
     }
     
     //MARK: Place search Textfield Delegates
     func placeSearch(textField: MVPlaceSearchTextField!, ResponseForSelectedPlace responseDict: GMSPlace!) {
         self.view.endEditing(true)
         if (textField == textfieldSource) {
-            source = responseDict;
+            sourceCoordinate = responseDict;
         }else{
-            destination = responseDict
+            destinationCoordinate = responseDict
         }
         
         print("Selected address: \(responseDict)")
@@ -155,9 +226,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate, RideRequestBut
     
     func textFieldShouldClear(textField: UITextField) -> Bool{
         if(textField == textfieldSource){
-            source = nil
+            sourceCoordinate = nil
         }else{
-            destination = nil
+            destinationCoordinate = nil
         }
         return true
     }
@@ -167,8 +238,8 @@ class FirstViewController: UIViewController, UITextFieldDelegate, RideRequestBut
         let button = RideRequestButton()
         let ridesClient = RidesClient()
         
-        let pickupLocation = CLLocation(latitude: source!.coordinate.latitude, longitude: source!.coordinate.longitude)
-        let dropoffLocation = CLLocation(latitude: destination!.coordinate.latitude, longitude: destination!.coordinate.longitude)
+        let pickupLocation = CLLocation(latitude: sourceCoordinate!.coordinate.latitude, longitude: sourceCoordinate!.coordinate.longitude)
+        let dropoffLocation = CLLocation(latitude: destinationCoordinate!.coordinate.latitude, longitude: destinationCoordinate!.coordinate.longitude)
         var builder = RideParametersBuilder().setPickupLocation(pickupLocation).setDropoffLocation(dropoffLocation)
         ridesClient.fetchCheapestProduct(pickupLocation: pickupLocation, completion: {
             product, response in

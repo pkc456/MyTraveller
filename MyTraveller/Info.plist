@@ -66,5 +66,10 @@
 	</array>
     <key>UberServerToken</key>
     <string>FV-Xc60DofTg39EnRW9v30C1GuzXk2dPWdko2oCe</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
 </dict>
 </plist>

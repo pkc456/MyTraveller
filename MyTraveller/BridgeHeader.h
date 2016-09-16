@@ -10,6 +10,7 @@
 #define BridgeHeader_h
 
 #import "MVPlaceSearchTextField.h"
+#import <AFNetworking/AFNetworking.h>
 //#import "MLPAutoCompleteTextField.h"
 
 //#import "PlaceObject.h"

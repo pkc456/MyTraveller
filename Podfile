@@ -8,5 +8,6 @@ target 'MyTraveller' do
   # Pods for MyTraveller
   pod 'GoogleMaps','1.10.2'
   pod 'UberRides'
+  pod 'AFNetworking', '~> 2.6'
 
 end

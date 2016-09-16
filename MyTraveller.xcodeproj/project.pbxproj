@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		3BAD84705F51B22EB31DB7B7 /* Pods_MyTraveller.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA44384599C056AA8918AE7 /* Pods_MyTraveller.framework */; };
 		73265F2B1D8A73FF00E2F586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73265F2A1D8A73FF00E2F586 /* AppDelegate.swift */; };
-		73265F2D1D8A73FF00E2F586 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73265F2C1D8A73FF00E2F586 /* FirstViewController.swift */; };
-		73265F2F1D8A73FF00E2F586 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73265F2E1D8A73FF00E2F586 /* SecondViewController.swift */; };
 		73265F321D8A73FF00E2F586 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73265F301D8A73FF00E2F586 /* Main.storyboard */; };
 		73265F341D8A73FF00E2F586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73265F331D8A73FF00E2F586 /* Assets.xcassets */; };
 		73265F371D8A73FF00E2F586 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73265F351D8A73FF00E2F586 /* LaunchScreen.storyboard */; };
@@ -19,6 +17,16 @@
 		73265F501D8A741300E2F586 /* MVPlaceSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 73265F491D8A741300E2F586 /* MVPlaceSearchTextField.m */; };
 		73265F511D8A741300E2F586 /* PlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 73265F4B1D8A741300E2F586 /* PlaceDetail.m */; };
 		73265F521D8A741300E2F586 /* PlaceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 73265F4D1D8A741300E2F586 /* PlaceObject.m */; };
+		80A863A51D8C383A00E19065 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A863A31D8C383A00E19065 /* FirstViewController.swift */; };
+		80A863A61D8C383A00E19065 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A863A41D8C383A00E19065 /* SecondViewController.swift */; };
+		80A863A91D8C389C00E19065 /* ServiceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A863A81D8C389C00E19065 /* ServiceHandler.swift */; };
+		80A863AB1D8C38A500E19065 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A863AA1D8C38A500E19065 /* APIHandler.swift */; };
+		80A863B01D8C38C000E19065 /* CabCategoryModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A863AC1D8C38C000E19065 /* CabCategoryModal.swift */; };
+		80A863B11D8C38C000E19065 /* CoordinateModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A863AD1D8C38C000E19065 /* CoordinateModal.swift */; };
+		80A863B21D8C38C000E19065 /* FareBreakUpModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A863AE1D8C38C000E19065 /* FareBreakUpModal.swift */; };
+		80A863B31D8C38C000E19065 /* RideEstimationModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A863AF1D8C38C000E19065 /* RideEstimationModal.swift */; };
+		80A863B61D8C38EB00E19065 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A863B41D8C38EB00E19065 /* Constant.swift */; };
+		80A863B71D8C38EB00E19065 /* UtilityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A863B51D8C38EB00E19065 /* UtilityClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +34,6 @@
 		5A27C904488CB21F53A5653F /* Pods-MyTraveller.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTraveller.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTraveller/Pods-MyTraveller.release.xcconfig"; sourceTree = "<group>"; };
 		73265F271D8A73FF00E2F586 /* MyTraveller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTraveller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73265F2A1D8A73FF00E2F586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		73265F2C1D8A73FF00E2F586 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		73265F2E1D8A73FF00E2F586 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		73265F311D8A73FF00E2F586 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		73265F331D8A73FF00E2F586 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73265F361D8A73FF00E2F586 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -45,7 +51,17 @@
 		73265F4B1D8A741300E2F586 /* PlaceDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetail.m; sourceTree = "<group>"; };
 		73265F4C1D8A741300E2F586 /* PlaceObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceObject.h; sourceTree = "<group>"; };
 		73265F4D1D8A741300E2F586 /* PlaceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceObject.m; sourceTree = "<group>"; };
-		73265F531D8A750900E2F586 /* BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeHeader.h; sourceTree = "<group>"; };
+		73265F531D8A750900E2F586 /* BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BridgeHeader.h; path = ../../BridgeHeader.h; sourceTree = "<group>"; };
+		80A863A31D8C383A00E19065 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		80A863A41D8C383A00E19065 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		80A863A81D8C389C00E19065 /* ServiceHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceHandler.swift; sourceTree = "<group>"; };
+		80A863AA1D8C38A500E19065 /* APIHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
+		80A863AC1D8C38C000E19065 /* CabCategoryModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CabCategoryModal.swift; sourceTree = "<group>"; };
+		80A863AD1D8C38C000E19065 /* CoordinateModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateModal.swift; sourceTree = "<group>"; };
+		80A863AE1D8C38C000E19065 /* FareBreakUpModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FareBreakUpModal.swift; sourceTree = "<group>"; };
+		80A863AF1D8C38C000E19065 /* RideEstimationModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideEstimationModal.swift; sourceTree = "<group>"; };
+		80A863B41D8C38EB00E19065 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		80A863B51D8C38EB00E19065 /* UtilityClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityClass.swift; sourceTree = "<group>"; };
 		DD04F82EB32906B241CF7417 /* Pods-MyTraveller.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTraveller.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTraveller/Pods-MyTraveller.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,15 +106,16 @@
 		73265F291D8A73FF00E2F586 /* MyTraveller */ = {
 			isa = PBXGroup;
 			children = (
+				80A863A71D8C387D00E19065 /* HandlerClass */,
+				80A863A01D8C383A00E19065 /* Model */,
+				80A863A11D8C383A00E19065 /* Utilities */,
+				80A863A21D8C383A00E19065 /* ViewController */,
 				73265F3E1D8A741300E2F586 /* Third Party */,
 				73265F2A1D8A73FF00E2F586 /* AppDelegate.swift */,
-				73265F2C1D8A73FF00E2F586 /* FirstViewController.swift */,
-				73265F2E1D8A73FF00E2F586 /* SecondViewController.swift */,
 				73265F301D8A73FF00E2F586 /* Main.storyboard */,
 				73265F331D8A73FF00E2F586 /* Assets.xcassets */,
 				73265F351D8A73FF00E2F586 /* LaunchScreen.storyboard */,
 				73265F381D8A73FF00E2F586 /* Info.plist */,
-				73265F531D8A750900E2F586 /* BridgeHeader.h */,
 			);
 			path = MyTraveller;
 			sourceTree = "<group>";
@@ -137,6 +154,48 @@
 				73265F471D8A741300E2F586 /* NSString+Levenshtein.m */,
 			);
 			path = MLPAutoCompleteTextField;
+			sourceTree = "<group>";
+		};
+		80A863A01D8C383A00E19065 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				80A863AC1D8C38C000E19065 /* CabCategoryModal.swift */,
+				80A863AD1D8C38C000E19065 /* CoordinateModal.swift */,
+				80A863AE1D8C38C000E19065 /* FareBreakUpModal.swift */,
+				80A863AF1D8C38C000E19065 /* RideEstimationModal.swift */,
+			);
+			name = Model;
+			path = "Third Party/Model";
+			sourceTree = "<group>";
+		};
+		80A863A11D8C383A00E19065 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				80A863B41D8C38EB00E19065 /* Constant.swift */,
+				80A863B51D8C38EB00E19065 /* UtilityClass.swift */,
+				73265F531D8A750900E2F586 /* BridgeHeader.h */,
+			);
+			name = Utilities;
+			path = "Third Party/Utilities";
+			sourceTree = "<group>";
+		};
+		80A863A21D8C383A00E19065 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				80A863A31D8C383A00E19065 /* FirstViewController.swift */,
+				80A863A41D8C383A00E19065 /* SecondViewController.swift */,
+			);
+			name = ViewController;
+			path = "Third Party/ViewController";
+			sourceTree = "<group>";
+		};
+		80A863A71D8C387D00E19065 /* HandlerClass */ = {
+			isa = PBXGroup;
+			children = (
+				80A863AA1D8C38A500E19065 /* APIHandler.swift */,
+				80A863A81D8C389C00E19065 /* ServiceHandler.swift */,
+			);
+			path = HandlerClass;
 			sourceTree = "<group>";
 		};
 		BCD7C6B3949B450F1E70D25F /* Pods */ = {
@@ -271,14 +330,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73265F2F1D8A73FF00E2F586 /* SecondViewController.swift in Sources */,
+				80A863A51D8C383A00E19065 /* FirstViewController.swift in Sources */,
 				73265F511D8A741300E2F586 /* PlaceDetail.m in Sources */,
+				80A863B61D8C38EB00E19065 /* Constant.swift in Sources */,
 				73265F4F1D8A741300E2F586 /* NSString+Levenshtein.m in Sources */,
 				73265F501D8A741300E2F586 /* MVPlaceSearchTextField.m in Sources */,
+				80A863A91D8C389C00E19065 /* ServiceHandler.swift in Sources */,
+				80A863B11D8C38C000E19065 /* CoordinateModal.swift in Sources */,
+				80A863B71D8C38EB00E19065 /* UtilityClass.swift in Sources */,
 				73265F521D8A741300E2F586 /* PlaceObject.m in Sources */,
 				73265F4E1D8A741300E2F586 /* MLPAutoCompleteTextField.m in Sources */,
+				80A863B31D8C38C000E19065 /* RideEstimationModal.swift in Sources */,
+				80A863AB1D8C38A500E19065 /* APIHandler.swift in Sources */,
+				80A863B01D8C38C000E19065 /* CabCategoryModal.swift in Sources */,
+				80A863B21D8C38C000E19065 /* FareBreakUpModal.swift in Sources */,
 				73265F2B1D8A73FF00E2F586 /* AppDelegate.swift in Sources */,
-				73265F2D1D8A73FF00E2F586 /* FirstViewController.swift in Sources */,
+				80A863A61D8C383A00E19065 /* SecondViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
